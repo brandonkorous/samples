@@ -1,0 +1,28 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: kubernetes-auth0-concept-authentication-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: kubernetes-auth0-concept-authentication
+  template:
+    metadata:
+      labels:
+        app: kubernetes-auth0-concept-authentication 
+    spec:
+      containers:
+        - name: kubernetes-auth0-concept-authentication 
+          image: brandonkorouscontainers.azurecr.io/kubernetes-auth0-concept-authentication 
+          ports:
+          - containerPort: 80
+          env:
+          - name: "ASPNETCORE_ENVIRONMENT"
+            value: "Development"
+          - name: "Auth0_Authority"
+            value: "$(Auth0:Authority)"
+          - name: "Auth0_ClientId"
+            value: "$(Auth0:ClientId)"
+          - name: "Auth0_ClientSecret"
+            value: "$(Auth0:ClientSecret)"
