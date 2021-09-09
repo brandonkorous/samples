@@ -21,8 +21,8 @@ spec:
           - name: "ASPNETCORE_ENVIRONMENT"
             value: "Development"
           - name: "Auth0_Authority"
-            value: "$(Auth0:Authority)"
+            value: $(Auth0:Authority)
           - name: "Auth0_ClientId"
-            value: "$(Auth0:ClientId)"
+            value: $(Auth0:ClientId)
           - name: "Auth0_ClientSecret"
-            value: "$(Auth0:ClientSecret)"
+            value: $(Auth0:ClientSecret)
