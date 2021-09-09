@@ -76,6 +76,6 @@ stages:
               manifests: |
                 $(Pipeline.Workspace)/eng/development/deployment.yml
                 $(Pipeline.Workspace)/eng/development/service.yml
-                $(Pipeline.Workspace)/eng/development/ingress.yml
+#                $(Pipeline.Workspace)/eng/development/ingress.yml
               containers: '$(containerRegistry)/$(imageRepository):$(tag)'
               imagePullSecrets: '$(imagePullSecret)'
