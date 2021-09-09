@@ -33,10 +33,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - kubernetes-auth0-concept-authentication.samples.brandonkorous.com
+    - authentication.samples.brandonkorous.com
     secretName: wize-ingress-kubernetes-auth0-concept-authentication-certificate
   rules:
-  - host: kubernetes-auth0-concept-authentication.samples.brandonkorous.com
+  - host: authentication.samples.brandonkorous.com
     http:
       paths:
       - path: /
