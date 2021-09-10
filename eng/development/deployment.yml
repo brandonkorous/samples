@@ -18,7 +18,11 @@ spec:
           ports:
           - containerPort: 80
           env:
-            Auth0_Authority: "$(Auth0:Authority)"
-            ASPNETCORE_ENVIRONMENT: "Development2"
-            Auth0_ClientId: "$(Auth0:ClientId)"
-            Auth0_ClientSecret: "$(Auth0:ClientSecret)"
+          - name: "ASPNETCORE_ENVIRONMENT"
+            value: "Development"
+          - name: "Auth0_Authority"
+            value: "$(Auth0:Authority)"
+          - name: "Auth0_ClientId"
+            value: "$(Auth0:ClientId)"
+          - name: "Auth0_ClientSecret"
+            value: "$(Auth0:ClientSecret)"
