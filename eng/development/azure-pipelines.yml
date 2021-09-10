@@ -17,7 +17,7 @@ variables:
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'brandonkorouscontainers-auth'
-
+  auth0Authority: 'test'
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
