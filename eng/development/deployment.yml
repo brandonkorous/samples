@@ -23,15 +23,15 @@ spec:
           - name: "Auth0_Authority"
             valueFrom:
               secretKeyRef: 
-                name: Auth0_Images_Secrets
+                name: auth0_images_secrets
                 key: Auth0_Authority
           - name: "Auth0_ClientId"
             valueFrom:
               secretKeyRef: 
-                name: Auth0_Images_Secrets
+                name: auth0_images_secrets
                 key: Auth0_ClientId
           - name: "Auth0_ClientSecret"
             valueFrom:
               secretKeyRef: 
-                name: Auth0_Images_Secrets
+                name: auth0_images_secrets
                 key: Auth0_ClientSecret
