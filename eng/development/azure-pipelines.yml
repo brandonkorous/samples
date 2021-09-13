@@ -63,25 +63,7 @@ stages:
               action: createSecret
               secretType: generic
               secretName: auth0-images-secrets
-              secretArguments: --from-literal=Auth0_Authority="$(Auth0:Authority)"
-              kubernetesServiceConnection: 'svc-con-aks-korous-kube-development'
-              namespace: development
-          - task: KubernetesManifest@0
-            displayName: Create secret
-            inputs: 
-              action: createSecret
-              secretType: generic
-              secretName: auth0-images-secrets
-              secretArguments: --from-literal=Auth0_ClientId="$(Auth0:ClientId)"
-              kubernetesServiceConnection: 'svc-con-aks-korous-kube-development'
-              namespace: development
-          - task: KubernetesManifest@0
-            displayName: Create secret
-            inputs: 
-              action: createSecret
-              secretType: generic
-              secretName: auth0-images-secrets
-              secretArguments: --from-literal=Auth0_ClientSecret="$(Auth0:ClientSecret)"
+              secretArguments: --from-literal=Auth0_Authority="$(Auth0:Authority)" --from-literal=Auth0_ClientSecret="$(Auth0:ClientSecret)" --from-literal=Auth0_ClientId="$(Auth0:ClientId)"
               kubernetesServiceConnection: 'svc-con-aks-korous-kube-development'
               namespace: development
           - task: KubernetesManifest@0
