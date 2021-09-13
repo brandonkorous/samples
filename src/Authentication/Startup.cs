@@ -38,9 +38,9 @@ namespace Authentication
                 .AddCookie()
                 .AddOpenIdConnect("Auth0", options =>
                 {
-                    options.Authority = $"https://{Configuration["Auth0:Authority"]}";
-                    options.ClientId = Configuration["Auth0:ClientId"];
-                    options.ClientSecret = Configuration["Auth0:ClientSecret"];
+                    options.Authority = $"https://{Environment.GetEnvironmentVariable("Auth0:Authority")}";
+                    options.ClientId = Environment.GetEnvironmentVariable("Auth0:ClientId");
+                    options.ClientSecret = Environment.GetEnvironmentVariable("Auth0:ClientSecret");
                     options.ResponseType = OpenIdConnectResponseType.Code;
                     options.Scope.Clear();
                     options.Scope.Add("openid");
@@ -51,7 +51,7 @@ namespace Authentication
                     {
                         OnRedirectToIdentityProviderForSignOut = (context) =>
                         {
-                            var logoutUri = $"https://{Configuration["Auth0:Authority"]}/v2/logout?client_id={Configuration["Auth0:ClientId"]}";
+                            var logoutUri = $"https://{Environment.GetEnvironmentVariable("Auth0:Authority")}/v2/logout?client_id={Environment.GetEnvironmentVariable("Auth0:ClientId")}";
                             var postLogoutUri = context.Properties.RedirectUri;
                             if (!string.IsNullOrEmpty(postLogoutUri))
                             {
