@@ -58,6 +58,33 @@ stages:
         deploy:
           steps:
           - task: KubernetesManifest@0
+            displayName: Create secret
+            inputs: 
+              action: createSecret
+              secretType: generic
+              secretName: Auth0_Images_Secrets
+              secretArguments: --from-literal=Auth0_Authority="$(Auth0:Authority)"
+              kubernetesServiceConnection: 'svc-con-aks-korous-kube-development'
+              namespace: development
+          - task: KubernetesManifest@0
+            displayName: Create secret
+            inputs: 
+              action: createSecret
+              secretType: generic
+              secretName: Auth0_Images_Secrets
+              secretArguments: --from-literal=Auth0_ClientId="$(Auth0:ClientId)"
+              kubernetesServiceConnection: 'svc-con-aks-korous-kube-development'
+              namespace: development
+          - task: KubernetesManifest@0
+            displayName: Create secret
+            inputs: 
+              action: createSecret
+              secretType: generic
+              secretName: Auth0_Images_Secrets
+              secretArguments: --from-literal=Auth0_ClientSecret="$(Auth0:ClientSecret)"
+              kubernetesServiceConnection: 'svc-con-aks-korous-kube-development'
+              namespace: development
+          - task: KubernetesManifest@0
             displayName: Create imagePullSecret
             inputs:
               action: 'createSecret'
@@ -66,7 +93,6 @@ stages:
               secretType: 'dockerRegistry'
               secretName: '$(imagePullSecret)'
               dockerRegistryEndpoint: '$(dockerRegistryServiceConnection)'
-              
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:

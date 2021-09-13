@@ -21,8 +21,17 @@ spec:
           - name: "ASPNETCORE_ENVIRONMENT"
             value: "Development"
           - name: "Auth0_Authority"
-            value: "$(Auth0:Authority)"
+            valueFrom:
+              secretKeyRef: 
+                name: Auth0_Images_Secrets
+                key: Auth0_Authority
           - name: "Auth0_ClientId"
-            value: "$(Auth0:ClientId)"
+            valueFrom:
+              secretKeyRef: 
+                name: Auth0_Images_Secrets
+                key: Auth0_ClientId
           - name: "Auth0_ClientSecret"
-            value: "$(Auth0:ClientSecret)"
+            valueFrom:
+              secretKeyRef: 
+                name: Auth0_Images_Secrets
+                key: Auth0_ClientSecret
