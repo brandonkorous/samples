@@ -56,10 +56,12 @@ namespace Authentication
                     {
                         OnRedirectToIdentityProvider = (context) =>
                         {
-                        //    //var builder = new UriBuilder(context.ProtocolMessage.RedirectUri);
+                            var builder = new UriBuilder(context.ProtocolMessage.RedirectUri);
                         //    //builder.Scheme = "https";
-                        //    //context.ProtocolMessage.RedirectUri = builder.Uri.ToString();
+                            context.ProtocolMessage.RedirectUri = builder.Uri.ToString();
                             context.ProtocolMessage.SetParameter("audience", Environment.GetEnvironmentVariable("Auth0_Audience"));
+                            context.ProtocolMessage.SetParameter("scope", "openid email");
+                            context.ProtocolMessage.RedirectUri = context.ProtocolMessage.RedirectUri.Replace("http://", "https://", StringComparison.OrdinalIgnoreCase);
                             return Task.CompletedTask;
                         },
                         OnRedirectToIdentityProviderForSignOut = (context) =>
