@@ -59,7 +59,7 @@ namespace Authentication
                         //    //var builder = new UriBuilder(context.ProtocolMessage.RedirectUri);
                         //    //builder.Scheme = "https";
                         //    //context.ProtocolMessage.RedirectUri = builder.Uri.ToString();
-                            context.ProtocolMessage.SetParameter("audience", auth0Config.ImageOData.Audience);
+                            context.ProtocolMessage.SetParameter("audience", Environment.GetEnvironmentVariable("Auth0_Audience"));
                             return Task.CompletedTask;
                         },
                         OnRedirectToIdentityProviderForSignOut = (context) =>
