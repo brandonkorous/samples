@@ -54,7 +54,7 @@ namespace Authentication
 
                     options.Events = new OpenIdConnectEvents
                     {
-                        OnRedirectToIdentityProvider = (context) =>
+                        OnRedirectToIdentityProvider = context =>
                         {
                             var builder = new UriBuilder(context.ProtocolMessage.RedirectUri);
                         //    //builder.Scheme = "https";
@@ -62,9 +62,9 @@ namespace Authentication
                             context.ProtocolMessage.SetParameter("audience", Environment.GetEnvironmentVariable("Auth0_Audience"));
                             context.ProtocolMessage.SetParameter("scope", "openid email");
                             context.ProtocolMessage.RedirectUri = context.ProtocolMessage.RedirectUri.Replace("http://", "https://", StringComparison.OrdinalIgnoreCase);
-                            return Task.CompletedTask;
+                            return Task.FromResult(0);
                         },
-                        OnRedirectToIdentityProviderForSignOut = (context) =>
+                        OnRedirectToIdentityProviderForSignOut = context =>
                         {
                             var logoutUri = $"https://{Environment.GetEnvironmentVariable("Auth0_Authority")}/v2/logout?client_id={Environment.GetEnvironmentVariable("Auth0_ClientId")}";
                             var postLogoutUri = context.Properties.RedirectUri;
@@ -80,7 +80,7 @@ namespace Authentication
 
                             context.Response.Redirect(logoutUri);
                             context.HandleResponse();
-                            return Task.CompletedTask;
+                            return Task.FromResult(0);
                         }
                     };
                 });
