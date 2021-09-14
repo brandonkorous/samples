@@ -46,6 +46,7 @@ namespace Authentication
                     options.ClientId = Environment.GetEnvironmentVariable("Auth0_ClientId");
                     options.ClientSecret = Environment.GetEnvironmentVariable("Auth0_ClientSecret");
                     options.ResponseType = OpenIdConnectResponseType.Code;
+                    options.SaveTokens = true;
                     options.Scope.Clear();
                     options.Scope.Add("openid");
                     options.CallbackPath = new PathString("/callback");
