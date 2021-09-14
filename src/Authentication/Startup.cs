@@ -54,6 +54,14 @@ namespace Authentication
 
                     options.Events = new OpenIdConnectEvents
                     {
+                        OnRedirectToIdentityProvider = (context) =>
+                        {
+                        //    //var builder = new UriBuilder(context.ProtocolMessage.RedirectUri);
+                        //    //builder.Scheme = "https";
+                        //    //context.ProtocolMessage.RedirectUri = builder.Uri.ToString();
+                            context.ProtocolMessage.SetParameter("audience", auth0Config.ImageOData.Audience);
+                            return Task.CompletedTask;
+                        },
                         OnRedirectToIdentityProviderForSignOut = (context) =>
                         {
                             var logoutUri = $"https://{Environment.GetEnvironmentVariable("Auth0_Authority")}/v2/logout?client_id={Environment.GetEnvironmentVariable("Auth0_ClientId")}";
