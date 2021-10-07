@@ -40,3 +40,8 @@ spec:
               secretKeyRef: 
                 name: auth0-images-secrets
                 key: Auth0_Audience
+          - name: "BK_TEST"
+            valueFrom:
+              secretKeyRef: 
+                name: bk-test-secrets
+                key: BK_TEST

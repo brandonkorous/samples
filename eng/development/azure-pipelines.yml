@@ -67,6 +67,15 @@ stages:
               kubernetesServiceConnection: 'svc-con-aks-korous-kube-development'
               namespace: development
           - task: KubernetesManifest@0
+            displayName: Create secret
+            inputs: 
+              action: createSecret
+              secretType: generic
+              secretName: bk-test-secrets
+              secretArguments: --from-literal=BK_TEST="$(BK:TEST)"
+              kubernetesServiceConnection: 'svc-con-aks-korous-kube-development'
+              namespace: development
+          - task: KubernetesManifest@0
             displayName: Create imagePullSecret
             inputs:
               action: 'createSecret'
